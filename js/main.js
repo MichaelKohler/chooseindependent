@@ -17,6 +17,7 @@
         shareDescr = document.webL10n.get('share-description'),
         encodedDescr = shareDescr.replace(/#/g, '%23'),
         lang = document.webL10n.getLanguage().substring(0, 2),
+        langDropdown = document.getElementById('language'),
         topvideo = document.getElementById('topvideo'),
         usingThisLink = document.getElementById('usingThisLink'),
         embedcodeElem = document.getElementById('embedcode'),
@@ -24,7 +25,7 @@
         embedcodeSuffix = '" frameborder="0" allowfullscreen></iframe>';
 
         usingThisLink.addEventListener('click', function() {
-            var isHidden = embedcodeElem.getAttribute('hidden') === '' || embedcodeElem.getAttribute('hidden');
+            var isHidden = embedcodeElem.hasAttribute('hidden');
             console.log(isHidden);
             if (isHidden) {
                 embedcodeElem.removeAttribute('hidden');
@@ -35,100 +36,69 @@
             return false;
         });
 
-        if(lang=="en") {
-            topVideoUrl = topVideoUrlConfig.en,
-            topVideoUrlSrc = topVideoUrlConfigEmbed.en,
+        function changeTopVideoLanguage(normal, embed) {
+            topVideoUrl = normal,
+            topVideoUrlSrc = embed,
             topvideo.src = topVideoUrlSrc;
-            embedcodeElem.textContent = embedcodePrefix + topVideoUrlConfigEmbed.en + embedcodeSuffix;
-        }
-        if(lang=="es") {
-            document.getElementById('language').value="es";
-            topVideoUrl = topVideoUrlConfig.en,
-            topVideoUrlSrc = topVideoUrlConfigEmbed.en,
-            topvideo.src = topVideoUrlSrc;
-            embedcodeElem.textContent = embedcodePrefix + topVideoUrlConfigEmbed.en + embedcodeSuffix;
-        }
-        if(lang=="de") {
-            document.getElementById('language').value="de";
-            topVideoUrl = topVideoUrlConfig.de;
-            topVideoUrlSrc = topVideoUrlConfigEmbed.de;
-            topvideo.src = topVideoUrlSrc;
-            embedcodeElem.textContent = embedcodePrefix + topVideoUrlConfigEmbed.de + embedcodeSuffix;
-        }
-        if(lang=="pt") {
-            document.getElementById('language').value="pt-BR";
-            topVideoUrl = topVideoUrlConfig.pt;
-            topVideoUrlSrc = topVideoUrlConfigEmbed.pt;
-            topvideo.src = topVideoUrlSrc;
-            embedcodeElem.textContent = embedcodePrefix + topVideoUrlConfigEmbed.pt + embedcodeSuffix;
-        }
-        if(lang=="bn") {
-            document.getElementById('language').value="bn-BD";
-            topVideoUrl = topVideoUrlConfig.en,
-            topVideoUrlSrc = topVideoUrlConfigEmbed.en,
-            topvideo.src = topVideoUrlSrc;
-            embedcodeElem.textContent = embedcodePrefix + topVideoUrlConfigEmbed.en + embedcodeSuffix;
-        }
-        if(lang=="ur") {
-            document.getElementById('language').value="ur";
-            topVideoUrl = topVideoUrlConfig.en,
-            topVideoUrlSrc = topVideoUrlConfigEmbed.en,
-            topvideo.src = topVideoUrlSrc;
-            embedcodeElem.textContent = embedcodePrefix + topVideoUrlConfigEmbed.en + embedcodeSuffix;
+            embedcodeElem.textContent = embedcodePrefix + embed + embedcodeSuffix;
         }
 
-        var topVideoSharer = new Share('.share-button-top',{
-            width: '110px',
-            title: document.webL10n.get('share-title'),
-            url: topVideoUrl,
-            description: shareDescr,
-            ui: {
-                button_text: document.webL10n.get('share'),
-            },
-            networks: {
-                twitter: {
-                    description: encodedDescr
+        if(lang=="en") {
+            changeTopVideoLanguage(topVideoUrlConfig.en, topVideoUrlConfigEmbed.en);
+        }
+        if(lang=="es") {
+            langDropdown.value="es";
+            changeTopVideoLanguage(topVideoUrlConfig.en, topVideoUrlConfigEmbed.en);
+        }
+        if(lang=="de") {
+            langDropdown.value="de";
+            changeTopVideoLanguage(topVideoUrlConfig.de, topVideoUrlConfigEmbed.de);
+        }
+        if(lang=="pt") {
+            langDropdown.value="pt-BR";
+            changeTopVideoLanguage(topVideoUrlConfig.pt, topVideoUrlConfigEmbed.pt);
+        }
+        if(lang=="bn") {
+            langDropdown.value="bn-BD";
+            changeTopVideoLanguage(topVideoUrlConfig.en, topVideoUrlConfigEmbed.en);
+        }
+        if(lang=="ur") {
+            langDropdown.value="ur";
+            changeTopVideoLanguage(topVideoUrlConfig.en, topVideoUrlConfigEmbed.en);
+        }
+
+        function getShareOptions(url) {
+            var options = {
+                width: '110px',
+                title: document.webL10n.get('share-title'),
+                url: url,
+                description: shareDescr,
+                ui: {
+                    button_text: document.webL10n.get('share'),
                 },
-                facebook: {
-                    description: encodedDescr
-                },
-                email: {
-                    description: shareDescr + topVideoUrl
-                },
-                pinterest: {
-                    enabled: false
-                },
-                google_plus: {
-                    enabled: false
+                networks: {
+                    twitter: {
+                        description: encodedDescr
+                    },
+                    facebook: {
+                        description: encodedDescr
+                    },
+                    email: {
+                        description: shareDescr + url
+                    },
+                    pinterest: {
+                        enabled: false
+                    },
+                    google_plus: {
+                        enabled: false
+                    }
                 }
             }
-        });
-        var bottomVideoSharer = new Share('.share-button-bottom',{
-            width: '110px',
-            title: document.webL10n.get('share-title'),
-            url: videoUrl,
-            description: shareDescr,
-            ui: {
-                button_text: document.webL10n.get('share'),
-            },
-            networks: {
-                twitter: {
-                    description: encodedDescr
-                },
-                facebook: {
-                    description: encodedDescr
-                },
-                email: {
-                    description: shareDescr + videoUrl
-                },
-                pinterest: {
-                    enabled: false
-                },
-                google_plus: {
-                    enabled: false
-                }
-            }
-        });
+            return options;
+        }
+
+        var topVideoSharer = new Share('.share-button-top', getShareOptions(topVideoUrl)),
+            bottomVideoSharer = new Share('.share-button-bottom', getShareOptions(videoUrl));
 
         smoothScroll.init({
             speed: 700,
