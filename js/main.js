@@ -107,5 +107,10 @@
                 }
             }
         });
+
+        smoothScroll.init({
+            speed: 700,
+            easing: 'easeInOutCubic'
+        });
       }, false);
 }());
