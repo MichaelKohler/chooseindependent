@@ -16,43 +16,65 @@
         videoUrl = 'https://www.youtube-nocookie.com/watch?v=j6pwTk4D8WI',
         shareDescr = document.webL10n.get('share-description'),
         encodedDescr = shareDescr.replace(/#/g, '%23'),
-        lang = document.webL10n.getLanguage().substring(0, 2);
-        topvideo = document.getElementById('topvideo');
+        lang = document.webL10n.getLanguage().substring(0, 2),
+        topvideo = document.getElementById('topvideo'),
+        usingThisLink = document.getElementById('usingThisLink'),
+        embedcodeElem = document.getElementById('embedcode'),
+        embedcodePrefix = '<iframe height="315" src="',
+        embedcodeSuffix = '" frameborder="0" allowfullscreen></iframe>';
+
+        usingThisLink.addEventListener('click', function() {
+            var isHidden = embedcodeElem.getAttribute('hidden') === '' || embedcodeElem.getAttribute('hidden');
+            console.log(isHidden);
+            if (isHidden) {
+                embedcodeElem.removeAttribute('hidden');
+            }
+            else {
+                embedcodeElem.setAttribute('hidden', 'hidden');
+            }
+            return false;
+        });
 
         if(lang=="en") {
             topVideoUrl = topVideoUrlConfig.en,
             topVideoUrlSrc = topVideoUrlConfigEmbed.en,
             topvideo.src = topVideoUrlSrc;
+            embedcodeElem.textContent = embedcodePrefix + topVideoUrlConfigEmbed.en + embedcodeSuffix;
         }
         if(lang=="es") {
             document.getElementById('language').value="es";
             topVideoUrl = topVideoUrlConfig.en,
             topVideoUrlSrc = topVideoUrlConfigEmbed.en,
             topvideo.src = topVideoUrlSrc;
+            embedcodeElem.textContent = embedcodePrefix + topVideoUrlConfigEmbed.en + embedcodeSuffix;
         }
         if(lang=="de") {
             document.getElementById('language').value="de";
             topVideoUrl = topVideoUrlConfig.de;
             topVideoUrlSrc = topVideoUrlConfigEmbed.de;
             topvideo.src = topVideoUrlSrc;
+            embedcodeElem.textContent = embedcodePrefix + topVideoUrlConfigEmbed.de + embedcodeSuffix;
         }
         if(lang=="pt") {
             document.getElementById('language').value="pt-BR";
             topVideoUrl = topVideoUrlConfig.pt;
             topVideoUrlSrc = topVideoUrlConfigEmbed.pt;
             topvideo.src = topVideoUrlSrc;
+            embedcodeElem.textContent = embedcodePrefix + topVideoUrlConfigEmbed.pt + embedcodeSuffix;
         }
         if(lang=="bn") {
             document.getElementById('language').value="bn-BD";
             topVideoUrl = topVideoUrlConfig.en,
             topVideoUrlSrc = topVideoUrlConfigEmbed.en,
             topvideo.src = topVideoUrlSrc;
+            embedcodeElem.textContent = embedcodePrefix + topVideoUrlConfigEmbed.en + embedcodeSuffix;
         }
         if(lang=="ur") {
             document.getElementById('language').value="ur";
             topVideoUrl = topVideoUrlConfig.en,
             topVideoUrlSrc = topVideoUrlConfigEmbed.en,
             topvideo.src = topVideoUrlSrc;
+            embedcodeElem.textContent = embedcodePrefix + topVideoUrlConfigEmbed.en + embedcodeSuffix;
         }
 
         var topVideoSharer = new Share('.share-button-top',{
