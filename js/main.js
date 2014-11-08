@@ -2,9 +2,9 @@
 	document.webL10n.ready(function() {
         // TODO: change URLs to real videos
         var topVideoUrlConfig = {
-            en: 'https://www.youtube.com/watch?v=LtOGa5M8AuU',
-            de: 'https://www.youtube.com/watch?v=n7lPdJ0QN-Y',
-            pt: 'https://www.youtube.com/watch?v=GClwSA1vTS4'
+            en: 'https://www.youtube-nocookie.com/watch?v=LtOGa5M8AuU',
+            de: 'https://www.youtube-nocookie.com/watch?v=n7lPdJ0QN-Y',
+            pt: 'https://www.youtube-nocookie.com/watch?v=GClwSA1vTS4'
         },
         topVideoUrlConfigEmbed = {
             en: 'https://www.youtube-nocookie.com/embed/LtOGa5M8AuU?controls=0&showinfo=0',
@@ -13,7 +13,7 @@
         },
         topVideoUrl = topVideoUrlConfig.en,
         topVideoUrlSrc = topVideoUrlConfigEmbed.en,
-        videoUrl = 'https://www.youtube.com/watch?v=j6pwTk4D8WI',
+        videoUrl = 'https://www.youtube-nocookie.com/watch?v=j6pwTk4D8WI',
         shareDescr = document.webL10n.get('share-description'),
         encodedDescr = shareDescr.replace(/#/g, '%23'),
         lang = document.webL10n.getLanguage().substring(0, 2);
