@@ -1,5 +1,7 @@
 (function() {
-	document.webL10n.ready(function() {
+    var embedcodeElem = document.getElementById('embedcode');
+
+    document.webL10n.ready(function() {
         // TODO: change URLs to real videos
         var topVideoUrlConfig = {
             en: 'https://www.youtube-nocookie.com/watch?v=LtOGa5M8AuU',
@@ -19,22 +21,8 @@
         lang = document.webL10n.getLanguage().substring(0, 2),
         langDropdown = document.getElementById('language'),
         topvideo = document.getElementById('topvideo'),
-        usingThisLink = document.getElementById('usingThisLink'),
-        embedcodeElem = document.getElementById('embedcode'),
         embedcodePrefix = '<iframe height="315" src="',
         embedcodeSuffix = '" frameborder="0" allowfullscreen></iframe>';
-
-        usingThisLink.addEventListener('click', function() {
-            var isHidden = embedcodeElem.hasAttribute('hidden');
-            console.log(isHidden);
-            if (isHidden) {
-                embedcodeElem.removeAttribute('hidden');
-            }
-            else {
-                embedcodeElem.setAttribute('hidden', 'hidden');
-            }
-            return false;
-        });
 
         function changeTopVideoLanguage(normal, embed) {
             topVideoUrl = normal,
@@ -104,39 +92,53 @@
             speed: 700,
             easing: 'easeInOutCubic'
         });
-        $('#tabzilla').on('click', function() {
-          ga('send', 'event', 'link', 'click', 'tabzilla');
-        });
-        $('a[href="#online"]').on('click', function() {
-          ga('send', 'event', 'link', 'click', 'online');
-        });
-        $('a[href="#offline"]').on('click', function() {
-          ga('send', 'event', 'link', 'click', 'offline');
-        });
-        $('#download-avatar').on('click', function() {
-          ga('send', 'event', 'link', 'click', 'download-avatar');
-        });
-        $('#firefox-affiliate').on('click', function() {
-          ga('send', 'event', 'link', 'click', 'firefox-affiliate');
-        });
-        $('#download-wallpapers').on('click', function() {
-          ga('send', 'event', 'link', 'click', 'download-wallpapers');
-        });
-        $('#firefox-badge').on('click', function() {
-          ga('send', 'event', 'link', 'click', 'firefox-badge');
-        });
-        $('#download-signs').on('click', function() {
-          ga('send', 'event', 'link', 'click', 'download-signs');
-        });
-        $('.offline-video').delegate('li','click', function() {
-          var type = $(this).data('networks');
-          if (type == 'twitter') {
-            ga('send', 'event', 'li', 'click', 'offline-video-twitter');
-          } else if (type == 'facebook') {
-            ga('send', 'event', 'li', 'click', 'offline-video-facebook');
-          } else if (type == 'email') {
-            ga('send', 'event', 'li', 'click', 'offline-video-email');
-          }
-        });
-      }, false);
+    }, false);
+
+    var usingThisLink = document.getElementById('usingThisLink');
+    usingThisLink.addEventListener('click', function() {
+        var isHidden = embedcodeElem.hasAttribute('hidden');
+        console.log(isHidden);
+        if (isHidden) {
+            embedcodeElem.removeAttribute('hidden');
+        }
+        else {
+            embedcodeElem.setAttribute('hidden', 'hidden');
+        }
+        return false;
+    });
+
+    $('#tabzilla').on('click', function() {
+      ga('send', 'event', 'link', 'click', 'tabzilla');
+    });
+    $('a[href="#online"]').on('click', function() {
+      ga('send', 'event', 'link', 'click', 'online');
+    });
+    $('a[href="#offline"]').on('click', function() {
+      ga('send', 'event', 'link', 'click', 'offline');
+    });
+    $('#download-avatar').on('click', function() {
+      ga('send', 'event', 'link', 'click', 'download-avatar');
+    });
+    $('#firefox-affiliate').on('click', function() {
+      ga('send', 'event', 'link', 'click', 'firefox-affiliate');
+    });
+    $('#download-wallpapers').on('click', function() {
+      ga('send', 'event', 'link', 'click', 'download-wallpapers');
+    });
+    $('#firefox-badge').on('click', function() {
+      ga('send', 'event', 'link', 'click', 'firefox-badge');
+    });
+    $('#download-signs').on('click', function() {
+      ga('send', 'event', 'link', 'click', 'download-signs');
+    });
+    $('.offline-video').delegate('li','click', function() {
+      var type = $(this).data('networks');
+      if (type == 'twitter') {
+        ga('send', 'event', 'li', 'click', 'offline-video-twitter');
+      } else if (type == 'facebook') {
+        ga('send', 'event', 'li', 'click', 'offline-video-facebook');
+      } else if (type == 'email') {
+        ga('send', 'event', 'li', 'click', 'offline-video-email');
+      }
+    });
 }());
