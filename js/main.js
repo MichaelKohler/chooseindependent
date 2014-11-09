@@ -15,7 +15,7 @@
         },
         topVideoUrl = topVideoUrlConfig.en,
         topVideoUrlSrc = topVideoUrlConfigEmbed.en,
-        videoUrl = 'https://www.youtube-nocookie.com/watch?v=j6pwTk4D8WI',
+        videoUrl = 'https://www.youtube.com/watch?v=j6pwTk4D8WI',
         shareDescr = document.webL10n.get('share-description'),
         encodedDescr = shareDescr.replace(/#/g, '%23'),
         lang = document.webL10n.getLanguage().substring(0, 2),
