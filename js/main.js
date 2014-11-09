@@ -4,14 +4,14 @@
     document.webL10n.ready(function() {
         // TODO: change URLs to real videos
         var topVideoUrlConfig = {
-            en: 'https://www.youtube-nocookie.com/watch?v=LtOGa5M8AuU',
-            de: 'https://www.youtube-nocookie.com/watch?v=n7lPdJ0QN-Y',
-            pt: 'https://www.youtube-nocookie.com/watch?v=GClwSA1vTS4'
+            en: 'https://www.youtube.com/watch?v=LtOGa5M8AuU',
+            de: 'https://www.youtube.com/watch?v=n7lPdJ0QN-Y',
+            pt: 'https://www.youtube.com/watch?v=GClwSA1vTS4'
         },
         topVideoUrlConfigEmbed = {
-            en: 'https://www.youtube-nocookie.com/embed/LtOGa5M8AuU?controls=0&showinfo=0',
-            de: 'https://www.youtube-nocookie.com/embed/n7lPdJ0QN-Y?controls=0&showinfo=0',
-            pt: 'https://www.youtube-nocookie.com/embed/GClwSA1vTS4?controls=0&showinfo=0'
+            en: 'https://www.youtube.com/embed/LtOGa5M8AuU?controls=0&showinfo=0',
+            de: 'https://www.youtube.com/embed/n7lPdJ0QN-Y?controls=0&showinfo=0',
+            pt: 'https://www.youtube.com/embed/GClwSA1vTS4?controls=0&showinfo=0'
         },
         topVideoUrl = topVideoUrlConfig.en,
         topVideoUrlSrc = topVideoUrlConfigEmbed.en,
