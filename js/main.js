@@ -141,4 +141,14 @@
         ga('send', 'event', 'li', 'click', 'offline-video-email');
       }
     });
+    $('.tenyears-video').delegate('li','click', function() {
+      var type = $(this).data('networks');
+      if (type == 'twitter') {
+        ga('send', 'event', 'li', 'click', 'tenyears-video-twitter');
+      } else if (type == 'facebook') {
+        ga('send', 'event', 'li', 'click', 'tenyears-video-facebook');
+      } else if (type == 'email') {
+        ga('send', 'event', 'li', 'click', 'tenyears-video-email');
+      }
+    });
 }());
